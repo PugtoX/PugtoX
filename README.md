@@ -31,9 +31,9 @@ I build fast, accessible static and React sites, and I ship them.
 
 | | |
 |---|---|
-| One-page site (built + deployed) | from HKD 3,500 |
-| React site with forms & validation | from HKD 9,000 |
-| Technical SEO + performance audit | from HKD 2,500 |
+| One-page site (built + deployed) | from HKD 1,500 |
+| React site with forms & validation | from HKD 5,000 |
+| Technical SEO + performance audit | from HKD 2,000 |
 
 #### Contact
 
