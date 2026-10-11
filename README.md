@@ -86,4 +86,4 @@ precision · cost-weighted metrics
 
 - **Email** — hugoyuan2004@gmail.com
 - **Portfolio** — [pugtox.github.io/kin-ho-profile](https://pugtox.github.io/kin-ho-profile/)
-- **LinkedIn** — [linkedin.com/in/…](https://www.linkedin.com/) *(placeholder — update this)*
+- **LinkedIn** — [linkedin.com/in/pugto-yuan-48529636b/](https://www.linkedin.com/in/pugto-yuan-48529636b/)
