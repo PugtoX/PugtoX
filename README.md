@@ -1,42 +1,89 @@
-### Yuan Kin Ho · Front-end Developer (Hong Kong)
+### Yuan Kin Ho · AI Application Developer
 
-I build fast, accessible static and React sites, and I ship them.
+I build AI applications end to end — **and measure them properly**.
+Applied Sciences graduate (PolyU SPEED, 2026). Hong Kong resident, no visa sponsorship needed.
 
-**Available for freelance — remote or on-site in Hong Kong.**
+**Open to AI application / ML engineering roles.** Also available for freelance web work.
 
 ---
 
-#### What I do
+## Projects
 
-- **Static & marketing sites** — build, deploy, and the technical SEO that makes them findable
-- **React + Tailwind interfaces** — component work, theming, motion, form flows
-- **Performance & accessibility passes** — reduced-motion support, first-paint correctness, a11y basics
-- **Build tooling** — CI/CD pipelines, GitHub Pages deploys, low-level build scripts
+### [hk-labour-triage](https://github.com/PugtoX/hk-labour-triage) — LoRA fine-tuning for Cantonese labour-enquiry triage
 
-#### Selected work
+Fine-tuned **Qwen3-1.7B** with fp16 LoRA to route colloquial Cantonese labour-law questions into
+`{category, urgency, escalate}`. Exported to GGUF and served through Ollama so it could be compared
+against a 9B baseline **on one stack** rather than across two frameworks.
+
+| | 9B baseline | **1.7B + LoRA** |
+|---|---|---|
+| Urgency accuracy | 63.2% | 63.2% (tie) |
+| **Urgent-case recall** | 37.8% | **73.0%** |
+| **Weighted error cost /100** | 80 | **56** |
+| exact_match vs its own base | — | **3:40, p=0.000** (McNemar) |
+
+**The part I care about:** the conclusion got reversed three times, and each reversal is logged —
+a 46-item test set that ranked the models backwards, a de-duplication bug that leaked 13 duplicate
+texts into the test set, and a serving bug that applied the system prompt twice, costing 24pp of
+recall until the raw output exposed it. Every figure above is reproducible from the committed
+per-item dumps.
+
+`Python` · `Qwen3-1.7B` · `LoRA / PEFT` · `transformers` · `llama.cpp` · `Ollama` · `McNemar testing`
+
+---
+
+### [hk-law-rag](https://github.com/PugtoX/hk-law-rag) — RAG Q&A over the Hong Kong Employment Ordinance
+
+Full pipeline: 16 official Labour Department FAQ pages → 84 structured Q&A pairs → bge-m3
+embeddings → ChromaDB → cited answers from a local LLM via Ollama.
+
+- **recall@5 93.3% on colloquially-phrased queries** (100% on the corpus's own questions — that one
+  is a regression test, not a result)
+- Diagnosed and fixed a real retrieval defect: encoding answers alone left short answers
+  unretrievable (81/84); encoding question + answer reached 84/84
+- Two independent hallucination guards, and a measurement showing **neither alone suffices** —
+  a code-level distance gate that refuses without calling the model, plus a prompt constraint
+- Dockerised; CI runs 10 verification scripts
+
+`Python` · `bge-m3` · `ChromaDB` · `Ollama` · `FastAPI` · `Docker`
+
+---
+
+### [kin-ho-profile](https://github.com/PugtoX/kin-ho-profile) — portfolio site
+
+React 19 + Vite + Tailwind v4, built and shipped solo. Theme persisted in `localStorage` and applied
+**before first paint**; canvas backdrop that idles under `prefers-reduced-motion`; contact form with
+per-field validation, honeypot and cooldown. Lint + tests in CI, auto-deploy to GitHub Pages.
+
+→ **[pugtox.github.io/kin-ho-profile](https://pugtox.github.io/kin-ho-profile/)**
+
+---
+
+### Smaller experiments
 
 | Repo | What it shows |
 |---|---|
-| [kin-ho-profile](https://github.com/PugtoX/kin-ho-profile) | React 19 + Vite + Tailwind v4 single-page site. Dark/light theme persisted in `localStorage` and applied before first paint; canvas particle backdrop and fog layer that idle under `prefers-reduced-motion`; contact form with per-field validation, honeypot, and 60s cooldown. Lint + tests in CI, auto-deploy to GitHub Pages. |
-| [cookery-practice](https://github.com/PugtoX/cookery-practice) | Deployment and technical-SEO practice run on a static site. |
-| [palette-lab](https://github.com/PugtoX/palette-lab) | Colour palette candidates rendered side by side over one identical component skeleton. |
-| [android-openjdk-build-multiarch](https://github.com/PugtoX/android-openjdk-build-multiarch) | Build and packaging script for OpenJDK, used for Boardwalk 2.0. |
+| [cookery-practice](https://github.com/PugtoX/cookery-practice) | Deployment and technical-SEO practice run on a static site |
+| [palette-lab](https://github.com/PugtoX/palette-lab) | Colour palette candidates rendered side by side over one identical component skeleton |
 
-#### Stack
+---
 
-`React 19` · `Vite` · `Tailwind CSS v4` · `JavaScript` · `HTML/CSS`
-`GitHub Actions` · `GitHub Pages` · `oxlint` · `node --test` · `Java/JDK build tooling`
+## Stack
 
-#### Hire me for
+**AI / LLM** — RAG · embeddings (bge-m3) · vector search (ChromaDB) · LoRA / PEFT fine-tuning ·
+GGUF export · local LLM serving (Ollama)
 
-| | |
-|---|---|
-| One-page site (built + deployed) | from HKD 1,500 |
-| React site with forms & validation | from HKD 5,000 |
-| Technical SEO + performance audit | from HKD 2,000 |
+**Evaluation** — paired significance tests (McNemar) · Wilson intervals · per-class recall and
+precision · cost-weighted metrics
 
-#### Contact
+**Languages & Web** — Python · TypeScript / JavaScript · SQL · React · Node.js · FastAPI · Tailwind CSS
 
-- Email: hugoyuan2004@gmail.com
-- WhatsApp: +852 9618 5082
-- Portfolio: https://pugtox.github.io/kin-ho-profile/
+**Tooling** — Git · Docker · GitHub Actions · Linux (WSL2)
+
+---
+
+## Contact
+
+- **Email** — hugoyuan2004@gmail.com
+- **Portfolio** — [pugtox.github.io/kin-ho-profile](https://pugtox.github.io/kin-ho-profile/)
+- **LinkedIn** — [linkedin.com/in/…](https://www.linkedin.com/) *(placeholder — update this)*
